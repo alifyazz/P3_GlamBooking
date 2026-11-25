@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin MUA - GlamBooking</title>
+
+  <!-- Google Fonts: Playfair Display & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      background-color: #FAF2F4;
+    }
+    .admin-navbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid rgba(74, 30, 43, 0.1);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .admin-nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .admin-badge {
+      background: var(--accent-coral-soft);
+      color: var(--mauve-dark);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .dashboard-container {
+      max-width: 1300px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: #FFFFFF;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid rgba(74, 30, 43, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--mauve-dark);
+      line-height: 1.1;
+    }
+    .stat-desc {
+      font-size: 0.75rem;
+      color: var(--accent-coral-hover);
+      margin-top: 0.4rem;
+    }
+    /* Section Card */
+    .admin-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid rgba(74, 30, 43, 0.08);
+      margin-bottom: 2.5rem;
+    }
+    .admin-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .admin-card-title {
+      font-size: 1.4rem;
+      color: var(--mauve-dark);
+    }
+    /* Table */
+    .table-responsive {
+      overflow-x: auto;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .admin-table th {
+      background: #FDF4F6;
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+      color: var(--mauve-dark);
+      border-bottom: 2px solid rgba(74, 30, 43, 0.1);
+      white-space: nowrap;
+    }
+    .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(74, 30, 43, 0.06);
+      vertical-align: middle;
+    }
+    .admin-table tr:hover td {
+      background-color: #FFF9FA;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .status-pending {
+      background-color: #FFF3CD;
+      color: #856404;
+      border: 1px solid #FFEBAA;
+    }
+    .status-confirmed {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #A5D6A7;
+    }
+    .status-cancelled {
+      background-color: #F8D7DA;
+      color: #721C24;
+      border: 1px solid #F5C6CB;
+    }
+    .btn-sm {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+    }
+    .btn-wa {
+      background-color: #25D366;
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+    .btn-wa:hover {
+      background-color: #1EBE5D;
+      color: #FFFFFF;
+    }
+    .btn-confirm {
+      background-color: var(--mauve-dark);
+      color: #FFFFFF;
+    }
+    .btn-confirm:hover {
+      background-color: var(--mauve-dark-hover);
+    }
+    .btn-danger-outline {
+      background: transparent;
+      color: #D32F2F;
+      border: 1px solid #D32F2F;
+    }
+    .btn-danger-outline:hover {
+      background: #D32F2F;
+      color: #FFFFFF;
+    }
+    /* Calendar Slot Modifier Bar */
+    .slot-manager-form {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      background: var(--bg-main);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(74, 30, 43, 0.1);
+    }
+    @media (max-width: 992px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 576px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Admin -->
+  <nav class="admin-navbar">
+    <div class="admin-nav-inner">
+      <div class="admin-brand">
+        <span class="brand-logo" style="font-size: 1.5rem;">GlamBooking<span class="brand-dot">.</span></span>
+        <span class="admin-badge">MUA Admin Portal</span>
+      </div>
+
+      <div class="admin-actions">
+        <a href="{{ url_for('home') }}" target="_blank" class="btn btn-outline-mauve btn-sm">
+          🌐 Lihat Website Utama
+        </a>
+        <a href="{{ url_for('admin_logout') }}" class="btn btn-solid-mauve btn-sm">
+          Keluar (Logout)
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="dashboard-container">
+    <!-- Header Sambutan -->
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 0.25rem;">Dashboard Manajemen Jadwal</h1>
+      <p style="color: var(--text-muted);">
+        Kelola reservasi pengantin, pantau konfirmasi DP 50%, dan atur ketersediaan slot tanggal MUA.
+      </p>
+    </div>
+
+    <!-- Alert Notifikasi Flash -->
+    {% if success_msg %}
+    <div style="background: #E8F5E9; color: #2E7D32; padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid #A5D6A7;">
+      ✅ {{ success_msg }}
+    </div>
+    {% endif %}
+
+    <!-- 4 Kartu Metrik Statistik -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-title">Total Reservasi Masuk</span>
+        <span class="stat-value">{{ stats.total_bookings }}</span>
+        <span class="stat-desc">Semua paket layanan</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Menunggu Konfirmasi DP</span>
+        <span class="stat-value" style="color: #D97706;">{{ stats.pending_count }}</span>
+        <span class="stat-desc">Perlu verifikasi pembayaran DP</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Booking Terkonfirmasi</span>
+        <span class="stat-value" style="color: #2E7D32;">{{ stats.confirmed_count }}</span>
+        <span class="stat-desc">Jadwal resmi terkunci</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Slot Tanggal Penuh (Nov)</span>
+        <span class="stat-value" style="color: var(--accent-coral-hover);">{{ stats.booked_dates_count }} Hari</span>
+        <span class="stat-desc">Ditandai merah/coral di web</span>
+      </div>
+    </div>
+
+    <!-- Modul 1: Pengatur Ketersediaan Kalender Cepat -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">Atur Ketersediaan Kalender (November 2026)</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Ubah status tanggal secara manual untuk menutup slot jika ada agenda privat atau membuka slot tambahan.
+          </p>
+        </div>
+      </div>
+
+      <form method="POST" action="{{ url_for('admin_update_calendar') }}" class="slot-manager-form">
+        <div style="flex: 1; min-width: 200px;">
+          <label class="form-label" for="target_date" style="font-size: 0.8rem;">Pilih Tanggal</label>
+          <input type="date" id="target_date" name="target_date" class="form-control" value="2026-11-06" min="2026-11-01" max="2026-11-30" required>
+        </div>
+
+        <div style="flex: 1; min-width: 200px;">
+          <label class="form-label" for="new_status" style="font-size: 0.8rem;">Status Ketersediaan</label>
+          <select id="new_status" name="new_status" class="form-control" required>
+            <option value="booked">Penuh / Booked (Pink Coral)</option>
+            <option value="available">Kosong / Tersedia (Hijau Lembut)</option>
+            <option value="closed">Tutup / Libur Studio (Abu-abu)</option>
+          </select>
+        </div>
+
+        <div style="align-self: flex-end;">
+          <button type="submit" class="btn btn-solid-mauve btn-sm" style="padding: 0.75rem 1.5rem;">
+            Simpan Status Tanggal
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modul 2: Tabel Daftar Reservasi Klien -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">Daftar Reservasi Klien</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Daftar calon klien yang memesan via landing page.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>No. Invoice</th>
+              <th>Klien & Kontak</th>
+              <th>Paket</th>
+              <th>Tanggal Acara</th>
+              <th>Catatan / Lokasi</th>
+              <th>Status DP</th>
+              <th>Aksi Cepat</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in bookings %}
+            <tr>
+              <td>
+                <strong style="color: var(--mauve-dark);">{{ b.invoice_number }}</strong>
+              </td>
+              <td>
+                <div><strong>{{ b.customer_name }}</strong></div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">{{ b.customer_email }}</div>
+                <a href="https://wa.me/{{ b.customer_phone | replace('+', '') | replace('-', '') | replace(' ', '') }}?text=Halo%20kak%20{{ b.customer_name }},%20kami%20dari%20GlamBooking%20MUA%20ingin%20mengonfirmasi%20jadwal%20booking%20tanggal%20{{ b.booking_date }}..." 
+                   target="_blank" 
+                   class="btn btn-wa btn-sm" 
+                   style="display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; padding: 2px 8px; font-size: 0.75rem;">
+                  <span>💬 WA: {{ b.customer_phone }}</span>
+                </a>
+              </td>
+              <td>
+                <span style="font-weight: 500;">{{ b.package_name }}</span>
+              </td>
+              <td>
+                <strong>{{ b.booking_date }}</strong>
+              </td>
+              <td style="max-width: 220px; font-size: 0.825rem; color: var(--text-body);">
+                {{ b.notes if b.notes else '-' }}
+              </td>
+              <td>
+                {% if b.status == 'confirmed' %}
+                <span class="status-badge status-confirmed">✓ Terkonfirmasi</span>
+                {% elif b.status == 'cancelled' %}
+                <span class="status-badge status-cancelled">Dibatalkan</span>
+                {% else %}
+                <span class="status-badge status-pending">⏳ Menunggu DP</span>
+                {% endif %}
+              </td>
+              <td>
+                <div style="display: flex; gap: 0.35rem; align-items: center;">
+                  {% if b.status != 'confirmed' %}
+                  <form method="POST" action="{{ url_for('admin_confirm_booking', booking_id=b.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-confirm btn-sm" title="Konfirmasi Pembayaran DP 50%">
+                      Konfirmasi DP
+                    </button>
+                  </form>
+                  {% endif %}
+
+                  <form method="POST" action="{{ url_for('admin_delete_booking', booking_id=b.id) }}" onsubmit="return confirm('Hapus reservasi ini?');" style="display:inline;">
+                    <button type="submit" class="btn btn-danger-outline btn-sm" title="Hapus Reservasi">
+                      ✕
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                Belum ada data reservasi masuk.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modul 3: Status Integrasi Google Calendar -->
+    <div class="admin-card" style="background: #FFFFFF; border-left: 4px solid var(--accent-coral);">
+      <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--mauve-dark);">
+        📅 Status Sinkronisasi Google Calendar API
+      </h3>
+      <p style="font-size: 0.875rem; color: var(--text-body); margin-bottom: 0.75rem;">
+        {% if google_connected %}
+        <span style="color: #2E7D32; font-weight: 600;">● Terhubung Aktif:</span> Setiap booking yang masuk otomatis terdaftar di Google Calendar ID: <code>{{ calendar_id }}</code>.
+        {% else %}
+        <span style="color: #D97706; font-weight: 600;">● Mode Standby / Simulasi:</span> Reservasi tersimpan aman di database lokal. Untuk menghubungkan akun Google Calendar MUA asli, pasang berkas <code>credentials.json</code> Service Account dan aktifkan di <code>config.py</code>.
+        {% endif %}
+      </p>
+    </div>
+  </main>
+
+</body>
+</html>

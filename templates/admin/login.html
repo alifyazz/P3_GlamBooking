@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login MUA Portal - GlamBooking</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Utama -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #FFF0F2 0%, #FDE4E8 100%);
+      padding: 1.5rem;
+    }
+    .login-card {
+      background: #FFFFFF;
+      max-width: 440px;
+      width: 100%;
+      padding: 2.75rem 2.25rem;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 45px rgba(74, 30, 43, 0.12);
+      border: 1px solid rgba(255, 107, 122, 0.2);
+      text-align: center;
+    }
+    .login-brand {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--mauve-dark);
+      margin-bottom: 0.25rem;
+    }
+    .login-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .login-form {
+      text-align: left;
+    }
+    .demo-hint {
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent-coral);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.825rem;
+      color: var(--mauve-dark);
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .demo-hint code {
+      background: #FFFFFF;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: var(--accent-coral-hover);
+    }
+    .alert-danger {
+      background: #FFE8EC;
+      color: #C2185B;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      text-align: left;
+      border: 1px solid #FFB3C1;
+    }
+    .back-home-link {
+      display: inline-block;
+      margin-top: 1.75rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .back-home-link:hover {
+      color: var(--mauve-dark);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h1 class="login-brand">GlamBooking<span style="color: var(--accent-coral);">.</span></h1>
+    <p class="login-subtitle">Portal Khusus Make Up Artist & Manajemen Jadwal</p>
+
+    <!-- Alert jika error login -->
+    {% if error %}
+    <div class="alert-danger">
+      ⚠️ {{ error }}
+    </div>
+    {% endif %}
+
+    <!-- Hint Kredensial Default -->
+    <div class="demo-hint">
+      <strong>Kredensial Default:</strong><br>
+      Username: <code>admin</code> | Password: <code>glam2026</code>
+    </div>
+
+    <form method="POST" action="{{ url_for('admin_login') }}" class="login-form">
+      <div class="form-group">
+        <label class="form-label" for="username">Username MUA</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan username" required autofocus>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 1.75rem;">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn btn-solid-mauve btn-block">
+        Masuk ke Dashboard MUA
+      </button>
+    </form>
+
+    <a href="{{ url_for('home') }}" class="back-home-link">
+      ← Kembali ke Halaman Utama
+    </a>
+  </div>
+
+</body>
+</html>

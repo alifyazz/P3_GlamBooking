@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlamBooking - Jasa Make Up Artist (MUA) Profesional</title>
+
+  <!-- Google Fonts: Playfair Display (Headings) & Poppins (Body & Buttons) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. HEADER / NAVBAR
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Teks logo 'GlamBooking' di kiri -->
+        <a href="#" class="nav-brand">
+          <span class="brand-logo">GlamBooking<span class="brand-dot">.</span></span>
+        </a>
+
+        <!-- Menu navigasi di tengah -->
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#portofolio" class="nav-link">Portofolio</a></li>
+          <li><a href="#paket-harga" class="nav-link">Paket & Harga</a></li>
+          <li><a href="#ketersediaan" class="nav-link">Ketersediaan</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+          <!-- Tombol mobile di dalam dropdown drawer -->
+          <li class="mobile-book-btn">
+            <button class="btn btn-solid-mauve btn-block btn-open-modal">Book Jadwal</button>
+          </li>
+        </ul>
+
+        <!-- Tombol solid 'Book Jadwal' di kanan (Desktop) -->
+        <div class="nav-actions">
+          <button class="btn btn-solid-mauve btn-open-modal">Book Jadwal</button>
+        </div>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         2. HERO SECTION
+         ====================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow-bg"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Bagian Kiri: Heading, Deskripsi & 2 Tombol Bersampingan -->
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="hero-badge-icon">✨</span>
+              <span>Exclusive Luxury Makeup Artist</span>
+            </div>
+            <h1 class="hero-title">
+              Tampil memukau di <span class="title-accent">hari spesialmu.</span>
+            </h1>
+            <p class="hero-desc">
+              Sentuhan tata rias profesional, elegan, dan tahan lama yang dirancang untuk menonjolkan pesona alami Anda. Percayakan momen berharga pernikahan, wisuda, dan hari istimewa Anda bersama GlamBooking.
+            </p>
+            <div class="hero-buttons">
+              <!-- Tombol solid warna mauve -->
+              <a href="#ketersediaan" class="btn btn-solid-mauve">Cek Ketersediaan</a>
+              <!-- Tombol outline -->
+              <a href="#portofolio" class="btn btn-outline-mauve">Lihat Portofolio</a>
+            </div>
+          </div>
+
+          <!-- Bagian Kanan: Grid 3 Placeholder Gambar Latar Pink Merona -->
+          <div class="hero-gallery">
+            <div class="hero-image-grid">
+              <!-- 1 Gambar Vertikal Besar di Kiri (Span 2 rows) -->
+              <div class="hero-img-item large-vertical">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80" 
+                     alt="Flawless Bridal Makeup Look"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'350\' height=\'480\' viewBox=\'0 0 350 480\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23F8D9DF\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'20\' font-weight=\'bold\' text-anchor=\'middle\'>Bridal Glamour</text></svg>';">
+                <div class="hero-img-overlay">
+                  <span class="hero-img-tag">Bridal Signature</span>
+                </div>
+              </div>
+
+              <!-- 2 Gambar Horizontal Ditumpuk di Kanannya -->
+              <div class="hero-img-item">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" 
+                     alt="Detail Eyeshadow & Beauty Brush"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'200\' viewBox=\'0 0 300 200\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23FDE2E7\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'16\' text-anchor=\'middle\'>Detail Eye Glam</text></svg>';">
+                <div class="hero-img-overlay">
+                  <span class="hero-img-tag">Natural Glow</span>
+                </div>
+              </div>
+
+              <div class="hero-img-item">
+                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=600&q=80" 
+                     alt="Editorial Lips & Blush Touch"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'200\' viewBox=\'0 0 300 200\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23FBD8DF\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'16\' text-anchor=\'middle\'>Soft Peach Finish</text></svg>';">
+                <div class="hero-img-overlay">
+                  <span class="hero-img-tag">Dewy Radiant</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Estetik -->
+            <div class="hero-floating-badge">
+              <span class="badge-star">★ 4.9/5.0</span>
+              <span>Kepuasan 500+ Klien Bahagia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. PORTOFOLIO SECTION
+         ====================================================================== -->
+    <section class="portfolio-section" id="portofolio">
+      <div class="container">
+        <!-- Heading -->
+        <div class="section-header">
+          <span class="section-tag">Koleksi Riasan</span>
+          <h2 class="section-title">Hasil karya terbaru</h2>
+          <p class="section-subtitle">
+            Eksplorasi ragam riasan pengantin, wisuda, lamaran, dan adat karya tim GlamBooking dengan teknik terkini dan produk kosmetik internasional.
+          </p>
+        </div>
+
+        <!-- Deretan Chip/Filter Button di Bawah Judul -->
+        <div class="portfolio-filters" role="group" aria-label="Filter Portofolio">
+          <button class="filter-chip active" data-filter="bridal">Bridal</button>
+          <button class="filter-chip" data-filter="wisuda">Wisuda</button>
+          <button class="filter-chip" data-filter="engagement">Engagement</button>
+          <button class="filter-chip" data-filter="adat">Adat</button>
+          <button class="filter-chip" data-filter="photoshoot">Photoshoot</button>
+        </div>
+
+        <!-- Grid Masonry Berisi 5 Placeholder Kotak Gambar dengan Ukuran Bervariasi -->
+        <div class="portfolio-masonry">
+          <!-- Card 1: Tall (Bridal) -->
+          <div class="masonry-item tall" data-category="bridal">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" 
+                 alt="Luxury International Wedding Makeup"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'600\' viewBox=\'0 0 400 600\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23F5D3DA\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'22\' text-anchor=\'middle\'>Bridal Classic Glam</text></svg>';">
+            <div class="masonry-overlay">
+              <span class="masonry-category">Bridal</span>
+              <h3 class="masonry-title">Classic Royal Bride</h3>
+              <p class="masonry-caption">Flawless complexion dengan sentuhan peachy shimmer.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Regular (Wisuda) -->
+          <div class="masonry-item" data-category="wisuda">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" 
+                 alt="Wisuda Fresh Natural Look"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23FAD7DE\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'18\' text-anchor=\'middle\'>Fresh Wisuda Glow</text></svg>';">
+            <div class="masonry-overlay">
+              <span class="masonry-category">Wisuda</span>
+              <h3 class="masonry-title">Fresh Graduation Glam</h3>
+              <p class="masonry-caption">Riasan cerah tahan hingga 14 jam acara kelulusan.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Wide (Engagement) -->
+          <div class="masonry-item wide" data-category="engagement">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1000&q=80" 
+                 alt="Engagement Soft Glam Look"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'700\' height=\'350\' viewBox=\'0 0 700 350\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23F8CBD5\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'22\' text-anchor=\'middle\'>Romantic Engagement</text></svg>';">
+            <div class="masonry-overlay">
+              <span class="masonry-category">Engagement</span>
+              <h3 class="masonry-title">Romantic Soft Glam</h3>
+              <p class="masonry-caption">Harmoni warna rose gold dan dewy nude lips.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Regular (Adat) -->
+          <div class="masonry-item" data-category="adat">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=80" 
+                 alt="Rias Pengantin Tradisional Adat"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23F5CAD3\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'18\' text-anchor=\'middle\'>Tradisional Modern Adat</text></svg>';">
+            <div class="masonry-overlay">
+              <span class="masonry-category">Adat</span>
+              <h3 class="masonry-title">Modern Sunda Siger</h3>
+              <p class="masonry-caption">Pesona adat anggun dengan ketahanan rias sempurna.</p>
+            </div>
+          </div>
+
+          <!-- Card 5: Regular (Photoshoot) -->
+          <div class="masonry-item" data-category="photoshoot">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=700&q=80" 
+                 alt="Editorial Fashion Photoshoot Makeup"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23F3BAC5\'/><text x=\'50%25\' y=\'50%25\' fill=\'%234A1E2B\' font-family=\'serif\' font-size=\'18\' text-anchor=\'middle\'>High-End Editorial</text></svg>';">
+            <div class="masonry-overlay">
+              <span class="masonry-category">Photoshoot</span>
+              <h3 class="masonry-title">High-Fashion Editorial</h3>
+              <p class="masonry-caption">Tata rias dramatis bertekstur tajam di depan lensa studio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. PAKET & HARGA SECTION (PRICING)
+         ====================================================================== -->
+    <section class="pricing-section" id="paket-harga">
+      <div class="container">
+        <!-- Heading dan Sub-teks Deskripsi -->
+        <div class="section-header">
+          <span class="section-tag">Transparansi Layanan</span>
+          <h2 class="section-title">Pilih paket layananmu</h2>
+          <p class="section-subtitle">
+            Investasi terbaik untuk kecantikan paripurna di hari bahagia Anda. Disesuaikan dengan kebutuhan acara dengan garansi produk berkualitas tinggi.
+          </p>
+        </div>
+
+        <!-- 3 Card Harga Sejajar -->
+        <div class="pricing-grid">
+          <!-- Card 1: Makeup Wisuda (Tombol Outline) -->
+          <div class="pricing-card">
+            <div class="card-header-area">
+              <h3 class="package-name">Makeup Wisuda</h3>
+              <p class="package-tagline">Riasan segar, awet, dan foto-siap untuk momen wisuda.</p>
+            </div>
+
+            <ul class="pricing-features">
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Flawless HD Makeup tahan 12+ jam</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Hairdo modern atau Hijab Styling elegan</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Pemasangan bulu mata 2-layer natural</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Mini touch-up kit (lipstick & puff)</span>
+              </li>
+            </ul>
+
+            <!-- Placeholder |HARGA| & DP 50% -->
+            <div class="price-box">
+              <div class="price-placeholder">|HARGA|</div>
+              <div class="price-dp-info">
+                <span>⚡ DP 50% saat booking</span>
+              </div>
+            </div>
+
+            <!-- Tombol Outline -->
+            <button class="btn btn-outline-mauve btn-block btn-select-package" data-package="Makeup Wisuda">
+              Pilih Paket
+            </button>
+          </div>
+
+          <!-- Card 2: Makeup Pengantin (Center Highlighted, Tombol Solid) -->
+          <div class="pricing-card featured">
+            <!-- Badge Highlight -->
+            <div class="pricing-badge">Paling Populer</div>
+
+            <div class="card-header-area">
+              <h3 class="package-name">Makeup Pengantin</h3>
+              <p class="package-tagline">Signature Luxury Bridal Look untuk ratu sehari di pelaminan.</p>
+            </div>
+
+            <ul class="pricing-features">
+              <li class="feature-item">
+                <span class="feature-icon">★</span>
+                <span>Exclusive Luxury Flawless Waterproof Makeup</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">★</span>
+                <span>2x Retouch & Standby Crew selama prosesi</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">★</span>
+                <span>Pemasangan Siger Sunda / Paes / Veil Modern</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">★</span>
+                <span>Softlens premium & 3D Mink Lashes custom</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">★</span>
+                <span>Free makeup 1 orang Ibu atau Bridesmaid</span>
+              </li>
+            </ul>
+
+            <!-- Placeholder |HARGA| & DP 50% -->
+            <div class="price-box">
+              <div class="price-placeholder">|HARGA|</div>
+              <div class="price-dp-info">
+                <span>⚡ DP 50% saat booking</span>
+              </div>
+            </div>
+
+            <!-- Tombol SOLID Mauve -->
+            <button class="btn btn-solid-mauve btn-block btn-select-package" data-package="Makeup Pengantin">
+              Pilih Paket
+            </button>
+          </div>
+
+          <!-- Card 3: Express Makeup (Tombol Outline) -->
+          <div class="pricing-card">
+            <div class="card-header-area">
+              <h3 class="package-name">Express Makeup</h3>
+              <p class="package-tagline">Riasan cepat, natural, dan berseri untuk pesta kasual.</p>
+            </div>
+
+            <ul class="pricing-features">
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Quick Glam Makeup kilat (45 menit)</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Radiant natural glow skin finish</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Simple hair blow atau hijab rapi</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>Ideal untuk lamaran, pesta, atau photoshoot kasual</span>
+              </li>
+            </ul>
+
+            <!-- Placeholder |HARGA| & DP 50% -->
+            <div class="price-box">
+              <div class="price-placeholder">|HARGA|</div>
+              <div class="price-dp-info">
+                <span>⚡ DP 50% saat booking</span>
+              </div>
+            </div>
+
+            <!-- Tombol Outline -->
+            <button class="btn btn-outline-mauve btn-block btn-select-package" data-package="Express Makeup">
+              Pilih Paket
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. KETERSEDIAAN / KALENDER SECTION
+         ====================================================================== -->
+    <section class="availability-section" id="ketersediaan">
+      <div class="container">
+        <div class="availability-grid">
+          <!-- Bagian Kiri: Heading & 3 Langkah Vertikal Bernomor -->
+          <div class="availability-info">
+            <span class="section-tag">Booking Online</span>
+            <h2 class="section-title">Cek tanggal kosong</h2>
+            <p class="section-subtitle">
+              Sistem kalender kami diperbarui secara otomatis. Kunci tanggal acara spesial Anda sebelum slot terisi oleh klien lain.
+            </p>
+
+            <div class="steps-container">
+              <!-- Langkah 1 -->
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Pilih paket & tanggal</h4>
+                  <p>Tentukan jenis layanan makeup yang diinginkan dan pilih tanggal acara yang bertanda hijau pada kalender.</p>
+                </div>
+              </div>
+
+              <!-- Langkah 2 -->
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Booking & bayar DP</h4>
+                  <p>Lengkapi formulir singkat data diri dan konfirmasi jadwal reservasi Anda dengan pembayaran uang muka (DP) 50%.</p>
+                </div>
+              </div>
+
+              <!-- Langkah 3 -->
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Terima invoice</h4>
+                  <p>E-invoice resmi akan langsung dikirimkan ke email/WhatsApp dan jadwal otomatis tersinkronisasi ke Google Calendar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian Kanan: Card Putih UI Kalender Bulan November 2026 -->
+          <div class="calendar-wrapper">
+            <div class="calendar-card">
+              <!-- Header Kalender -->
+              <div class="calendar-header">
+                <div class="calendar-title-wrap">
+                  <h3 class="calendar-month-title">November 2026</h3>
+                  <span class="calendar-year-subtitle">Jadwal Reservasi MUA</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="calendar-nav-btn" aria-label="Bulan sebelumnya">&lt;</button>
+                  <button class="calendar-nav-btn" aria-label="Bulan berikutnya">&gt;</button>
+                </div>
+              </div>
+
+              <!-- Legend Kalender -->
+              <div class="calendar-legend">
+                <div class="legend-item">
+                  <span class="legend-dot coral"></span>
+                  <span>Pink Coral: Penuh</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot green"></span>
+                  <span>Hijau Lembut: Kosong</span>
+                </div>
+              </div>
+
+              <!-- Nama Hari (Min - Sab) -->
+              <div class="calendar-weekdays">
+                <span>Min</span>
+                <span>Sen</span>
+                <span>Sel</span>
+                <span>Rab</span>
+                <span>Kam</span>
+                <span>Jum</span>
+                <span>Sab</span>
+              </div>
+
+              <!-- Tanggal Grid November 2026 -->
+              <div class="calendar-dates-grid" id="calendarDates">
+                <!-- Di-render dinamis oleh JavaScript / sinkron dengan API -->
+              </div>
+
+              <!-- Info Tanggal Terpilih -->
+              <div class="selected-date-info">
+                <span>Tanggal Dipilih:</span>
+                <span class="selected-date-text" id="selectedDateDisplay">5 November 2026</span>
+              </div>
+
+              <!-- Tombol Solid Panjang 'Booking Tanggal Ini' -->
+              <button class="btn btn-solid-mauve btn-block" id="btnBookSelectedDate">
+                Booking Tanggal Ini
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       6. FOOTER
+       ======================================================================== -->
+  <footer class="site-footer" id="kontak">
+    <div class="container">
+      <!-- Bagian Tengah: Teks Heading Putih & Tombol Putih 'Mulai Booking' -->
+      <div class="footer-top">
+        <h2 class="footer-heading">Siap booking jadwalmu?</h2>
+        <p class="footer-sub">
+          Slot tanggal pernikahan dan wisuda terbatas. Amankan tanggal impian Anda sekarang juga bersama tim makeup artist GlamBooking.
+        </p>
+        <button class="btn btn-white btn-open-modal">
+          Mulai Booking
+        </button>
+      </div>
+
+      <!-- Garis Batas Tipis -->
+      <hr class="footer-divider">
+
+      <!-- Bagian Bawah: Copyright di Kiri & Social Media di Kanan -->
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 GlamBooking - {{ config.MUA_NAME if config else '[NAMA MUA]' }}. All Rights Reserved.
+          <span style="margin: 0 0.5rem; opacity: 0.3;">•</span>
+          <a href="{{ url_for('admin_login') }}" style="color: rgba(255, 255, 255, 0.6); text-decoration: underline; font-size: 0.85rem;" title="Portal Login Pemilik MUA">
+            MUA Portal
+          </a>
+        </div>
+
+        <div class="footer-socials" aria-label="Social Media Links">
+          <!-- Instagram -->
+          <a href="#" class="social-link" title="Instagram" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="#" class="social-link" title="WhatsApp" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" class="social-link" title="TikTok" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+            </svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="social-link" title="YouTube" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL FORMULIR BOOKING (POPUP INTERAKTIF)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Tutup popup">&times;</button>
+      
+      <h3 class="modal-title" id="modalTitle">Reservasi GlamBooking</h3>
+      <p class="modal-desc">Isi formulir di bawah ini untuk mengunci tanggal dan paket layanan makeup Anda.</p>
+
+      <form id="bookingForm">
+        <div class="form-group">
+          <label class="form-label" for="modalPackageSelect">Pilihan Paket</label>
+          <select id="modalPackageSelect" class="form-control" required>
+            <option value="Makeup Wisuda">Makeup Wisuda</option>
+            <option value="Makeup Pengantin" selected>Makeup Pengantin (Paling Populer)</option>
+            <option value="Express Makeup">Express Makeup</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalBookingDate">Tanggal Acara</label>
+          <input type="date" id="modalBookingDate" class="form-control" value="2026-11-05" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalCustomerName">Nama Lengkap Klien</label>
+          <input type="text" id="modalCustomerName" class="form-control" placeholder="Contoh: Anindya Larasati" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalCustomerPhone">Nomor WhatsApp Aktif</label>
+          <input type="tel" id="modalCustomerPhone" class="form-control" placeholder="Contoh: 081234567890" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalCustomerEmail">Alamat Email (Untuk Pengiriman E-Invoice)</label>
+          <input type="email" id="modalCustomerEmail" class="form-control" placeholder="nama@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modalNotes">Catatan / Lokasi Acara (Opsional)</label>
+          <textarea id="modalNotes" class="form-control" rows="2" placeholder="Sebutkan lokasi acara atau preferensi khusus..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-solid-mauve btn-block" style="margin-top: 1.5rem;">
+          Konfirmasi & Dapatkan Invoice DP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
